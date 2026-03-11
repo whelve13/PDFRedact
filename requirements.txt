@@ -1,0 +1,8 @@
+PyMuPDF
+pytesseract
+Pillow
+rich
+PySide6
+opencv-python
+numpy
+pytest
