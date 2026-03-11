@@ -7,15 +7,9 @@ import sys
 import re
 from typing import List, Dict
 
-# Set Tesseract path for bundled PyInstaller executable
-if getattr(sys, 'frozen', False):
-    base_path = sys._MEIPASS
-else:
-    # __file__ is in pdf_redactor/core/ocr_engine.py
-    # Three dirs up is the project root containing tesseract_bin
-    base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from pdf_redactor.utils.resource_handler import get_resource_path
 
-tess_path = os.path.join(base_path, 'tesseract_bin', 'tesseract.exe')
+tess_path = get_resource_path(os.path.join('tesseract_bin', 'tesseract.exe'))
 if os.path.exists(tess_path):
     pytesseract.pytesseract.tesseract_cmd = tess_path
 else:

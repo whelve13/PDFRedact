@@ -143,17 +143,15 @@ class WorkerThread(QThread):
 
         self.finished_batch.emit()
 
+from pdf_redactor.utils.resource_handler import get_resource_path
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.settings = SettingsManager()
-        self.setWindowTitle("PDF Redaction Tool")
+        self.setWindowTitle("Blnq")
         
-        # __file__ is in pdf_redactor/ui/gui.py
-        # Three dirs up is the project root containing logo.png
-        icon_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "logo.png")
-        if getattr(sys, 'frozen', False):
-            icon_path = os.path.join(sys._MEIPASS, "logo.png")
+        icon_path = get_resource_path(os.path.join("resources", "icons", "app_icon.png"))
             
         if os.path.exists(icon_path):
             self.setWindowIcon(QIcon(icon_path))
