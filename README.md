@@ -3,6 +3,12 @@
 Blnq is a production-grade, heavily optimized desktop application for securely redacting sensitive information from both Digital and Scanned PDFs. 
 Refactored and hardened for deep metadata scrubbing, multi-line phrase reconstruction, multithreaded OCR scanning, forensic audit logging, and complete standalone offline deployment.
 
+## Recent Updates (v2.0 Architecture)
+- **Coordinate Matrix Engine**: Removed viewport drift; redactions now map 1:1 against exact source PDF pixels regardless of DPI/Zoom scales or document `/Rotate` metadata.
+- **Thread Safety**: Isolated OpenCV processing pools ensure the main GUI event loop never blocks during heavy heuristic OCR parsing.
+- **Resource Management**: Explicit memory constraints and PyMuPDF `Pixmap` garbage collection applied to prevent out-of-memory errors on massive scanned documents.
+- **Strict Literal Matching**: Replaced unreliable fuzzy regex systems with 100% case-aware, zero-false-positive continuous array matching for both text layers and optical character recognition.
+
 ## Installation
 
 ### Method 1: Download Installer (Recommended for Users)
